@@ -1,5 +1,4 @@
-﻿using System;
-using GoodsApi.Context;
+﻿using GoodsApi.Context;
 using GoodsApi.Models;
 
 namespace GoodsApi.Repositories
