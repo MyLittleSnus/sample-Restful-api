@@ -7,13 +7,13 @@ public interface IOrderService
     /// <summary>
     /// Method for getting orders without linked complex objects
     /// </summary>
-    /// <returns>Task<IEnumerable<Order>></returns>
+    /// <returns></returns>
 	Task<IEnumerable<Order>> GetLazyOrders();
 
     /// <summary>
     /// Method for getting orders with linked complex objects
     /// </summary>
-    /// <returns>Task<IEnumerable<Order>></returns>
+    /// <returns></returns>
     Task<IEnumerable<Order>> GetCompleteOrders();
 
     /// <summary>
@@ -25,12 +25,12 @@ public interface IOrderService
     /// <summary>
     /// Method for updating existing order
     /// </summary>
-    /// <returns>Task<bool></returns>
+    /// <returns></returns>
     Task<bool> UpdateOrderStatus((string Id, int status) updateInfo);
 
     /// <summary>
     /// Method for existing order deletion
     /// </summary>
-    /// <returns>Task<bool></returns>
+    /// <returns></returns>
     Task<bool> DeleteOrder(string id);
 }
