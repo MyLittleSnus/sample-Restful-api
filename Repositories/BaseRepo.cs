@@ -1,11 +1,13 @@
 ﻿using System.Linq.Expressions;
 using GoodsApi.Context;
 using GoodsApi.Models;
+using GoodsApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoodsApi.Repositories;
 
-public class BaseRepo<TEntity> where TEntity : BaseEntity
+public class BaseRepo<TEntity> : IBaseRepository<TEntity>
+	where TEntity : BaseEntity
 {
 	protected readonly ShopContext _dbContext;
 	protected readonly DbSet<TEntity> _dbSet;
