@@ -13,7 +13,7 @@ public class OrderService : IOrderService
 	{
 		var orders = await _repo.Read();
 
-		return orders.Count() > 0 ? orders : Enumerable.Empty<Order>();
+        return orders.Count() > 0 ? orders : Enumerable.Empty<Order>();
     }
 
 	public async Task<IEnumerable<Order>> GetCompleteOrders()

@@ -72,17 +72,8 @@ public class OrdersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(void))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(void))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(void))]
-    public async Task<IActionResult> CloseOrder(string id)
+    public async Task<IActionResult> CloseOrder(Guid id)
     {
-        try
-        {
-            Guid.Parse(id);
-        }
-        catch
-        {
-            return BadRequest("Invalid id format");
-        }
-
         var result = await _service.DeleteOrder(id.ToString());
 
         if (!result)
@@ -95,9 +86,9 @@ public class OrdersController : ControllerBase
     [Route("edit/status/{id:guid}&{status:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(void))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(void))]
-    public async Task<IActionResult> UpdateOrder(string id, int status)
+    public async Task<IActionResult> UpdateOrder(Guid id, int status)
     {
-        var result = await _service.UpdateOrderStatus((id, status));
+        var result = await _service.UpdateOrderStatus((id.ToString(), status));
 
         if (!result)
             return StatusCode(500, "Update operation failed");
