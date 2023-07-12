@@ -1,9 +1,9 @@
 ﻿using GoodsApi.Models;
 using GoodsApi.Repositories;
 
-namespace GoodsApi.Services;
+namespace GoodsApi.Services.OrderService;
 
-public class OrderService
+public class OrderService : IOrderService
 {
 	private readonly OrderRepo _repo;
 

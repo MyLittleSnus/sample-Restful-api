@@ -1,6 +1,6 @@
 ﻿using GoodsApi.Infrustructure.DTO;
 using GoodsApi.Models;
-using GoodsApi.Services;
+using GoodsApi.Services.OrderService;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using GoodsApi.Infrustructure;
@@ -13,11 +13,11 @@ namespace GoodsApi.Controllers.v1;
 [ApiVersion("1.0")]
 public class OrdersController : ControllerBase
 {
-    private readonly OrderService _service;
+    private readonly IOrderService _service;
     private readonly IMapper _mapper;
 
     public OrdersController(
-        OrderService service,
+        IOrderService service,
         IMapper mapper,
         Generators generatorsFactory)
     {

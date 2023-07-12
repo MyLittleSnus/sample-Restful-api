@@ -33,6 +33,7 @@
     <None Remove="Controllers\v1\" />
     <None Remove="Infrustructure\Extensions\" />
     <None Remove="Infrustructure\Extensions\DependencyInjection\" />
+    <None Remove="Services\OrderService\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrustructure\" />
@@ -45,5 +46,6 @@
     <Folder Include="Controllers\v1\" />
     <Folder Include="Infrustructure\Extensions\" />
     <Folder Include="Infrustructure\Extensions\DependencyInjection\" />
+    <Folder Include="Services\OrderService\" />
   </ItemGroup>
 </Project>
