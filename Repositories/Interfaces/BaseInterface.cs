@@ -9,7 +9,7 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     /// Read all entities
     /// </summary>
     /// <returns></returns>
-    Task<IQueryable<TEntity>> Read();
+    IQueryable<TEntity> Read();
 
     /// <summary>
     /// Get entity by id
@@ -40,16 +40,4 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     /// </summary>
     /// <returns></returns>
     Task<bool> Update(TEntity entity);
-
-    /// <summary>
-    /// Include properties to be linked to an entity
-    /// </summary>
-    /// <returns></returns>
-    void IncludeSingle(TEntity entity, params Expression<Func<TEntity, object>>[] includeProperties);
-
-    /// <summary>
-    /// Include enumerable properties to be linked to an entity
-    /// </summary>
-    /// <returns></returns>
-    void IncludeMultiple(TEntity entity, params Expression<Func<TEntity, IEnumerable<object>>>[] includeProperties);
 }

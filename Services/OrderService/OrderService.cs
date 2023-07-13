@@ -9,30 +9,13 @@ public class OrderService : IOrderService
 
 	public OrderService(OrderRepo repo) => _repo = repo;
 
-	public async Task<IEnumerable<Order>> GetLazyOrders()
-	{
-		var orders = await _repo.Read();
+	public IQueryable<Order> GetLazyOrders() => _repo.Read();
 
-        return orders.Count() > 0 ? orders : Enumerable.Empty<Order>();
-    }
-
-	public async Task<IEnumerable<Order>> GetCompleteOrders()
-	{
-		var orders = await GetLazyOrders();
-
-		if (orders == null || orders.Count() == 0)
-			return Enumerable.Empty<Order>();
-
-		foreach (var order in orders)
-			_repo.IncludeMultiple(order, (o) => o.Goods);
-
-		return orders;
-	}
+	public IQueryable<Order> GetCompleteOrders()
+		=> _repo.GetOrdersIncludeLinked();
 
 	public async Task<bool> CreateOrder(Order order)
-	{
-		return await _repo.Create(order);
-	}
+		=> await _repo.Create(order);
 
 	public async Task<bool> UpdateOrderStatus((string Id, int status) updateInfo)
 	{

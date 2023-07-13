@@ -8,13 +8,13 @@ public interface IOrderService
     /// Method for getting orders without linked complex objects
     /// </summary>
     /// <returns></returns>
-	Task<IEnumerable<Order>> GetLazyOrders();
+	IQueryable<Order> GetLazyOrders();
 
     /// <summary>
     /// Method for getting orders with linked complex objects
     /// </summary>
     /// <returns></returns>
-    Task<IEnumerable<Order>> GetCompleteOrders();
+    IQueryable<Order> GetCompleteOrders();
 
     /// <summary>
     /// Method for creating new order

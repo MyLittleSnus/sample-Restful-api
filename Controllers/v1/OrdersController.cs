@@ -36,9 +36,9 @@ public class OrdersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(void))]
     public async Task<IEnumerable<OrderDTO>> GetAll()
     {
-        var orders = await _service.GetCompleteOrders();
+        var orders = _service.GetCompleteOrders();
 
-        return orders.Select(_mapper.Map<OrderDTO>);
+        return await Task.Run(() => orders.Select(_mapper.Map<OrderDTO>));
     }
 
     [Route("new")]

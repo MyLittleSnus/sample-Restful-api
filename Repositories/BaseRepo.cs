@@ -18,7 +18,9 @@ public class BaseRepo<TEntity> : IBaseRepository<TEntity>
 		_dbSet = _dbContext.Set<TEntity>();
 	}
 
-	public async Task<IQueryable<TEntity>> Read() => await Task.Run(_dbSet.AsQueryable);
+	public  IQueryable<TEntity> Read() => _dbSet.AsQueryable();
+
+	//public virtual IQueryable<TEntity> GetCompleteEntites();
 
 	public async Task<bool> Create(TEntity entity)
 	{
@@ -37,6 +39,9 @@ public class BaseRepo<TEntity> : IBaseRepository<TEntity>
 	public async Task<bool> Delete(string id)
 	{
 		var entity = await GetById(id);
+
+		if (entity == null)
+			return false;
 			
         _dbSet.Remove(entity);
 
@@ -50,22 +55,6 @@ public class BaseRepo<TEntity> : IBaseRepository<TEntity>
         return (await _dbContext.SaveChangesAsync()) > 0 ? true : false;
     }
 
-    public void IncludeSingle(TEntity entity, params Expression<Func<TEntity, object>>[] includeProperties)
-	{
-		foreach (var property in includeProperties)
-		{
-            _dbContext.Entry(entity).Reference(property!).Load();
-        }
-	}
-
-	public void IncludeMultiple(TEntity entity, params Expression<Func<TEntity, IEnumerable<object>>>[] includeProperties)
-	{
-        foreach (var property in includeProperties)
-        {
-            _dbContext.Entry(entity).Collection(property).Load();
-        }
-    }
-
-    public async Task<TEntity> GetById(string id)
-		=> await _dbSet.Where(e => e.Id == id).FirstAsync();
+    public async Task<TEntity?> GetById(string id)
+		=> await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
 }
