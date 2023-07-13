@@ -4,6 +4,8 @@ using GoodsApi.Repositories;
 
 namespace GoodsApi.Infrustructure;
 
+// deprecated !!!
+
 public interface IGenerator
 {
 	Task Generate();

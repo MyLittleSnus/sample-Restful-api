@@ -3,7 +3,6 @@ using GoodsApi.Models;
 using GoodsApi.Services.OrderService;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using GoodsApi.Infrustructure;
 
 namespace GoodsApi.Controllers.v1;
 
@@ -18,15 +17,10 @@ public class OrdersController : ControllerBase
 
     public OrdersController(
         IOrderService service,
-        IMapper mapper,
-        Generators generatorsFactory)
+        IMapper mapper)
     {
         _service = service;
         _mapper = mapper;
-
-        generatorsFactory
-            .CreateGenerator(GeneratorType.GoodsGenerator)
-            .Generate();
     }
 
     [Route("")]

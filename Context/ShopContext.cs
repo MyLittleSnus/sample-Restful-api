@@ -1,6 +1,5 @@
 ﻿using GoodsApi.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace GoodsApi.Context
 {
@@ -42,6 +41,8 @@ namespace GoodsApi.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BaseEntity>().UseTpcMappingStrategy();
+
+            modelBuilder.ApplyConfiguration(new GoodsShopContextConfiguration());
         }
     }
 }
